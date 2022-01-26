@@ -4,7 +4,7 @@ It is a small page ranking project in which you enter a network of web pages and
 
 ## To use it
 **Compile:** <br/>
-	> `g++ .\*.cpp -o main <br/>`
+	> `g++ .\*.cpp -o main`
 
 
 **Execute:** <br/>
