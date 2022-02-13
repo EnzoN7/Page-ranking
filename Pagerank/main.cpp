@@ -17,7 +17,7 @@ void cmdLineRobustness(int nbIterations, float dumpingFactor, ifstream &file, in
 
     cout << "# Number of iterations : " << nbIterations << "." << endl;
     cout << "# Dumping factor : " << dumpingFactor << "." << endl;
-    cout << "# File : " << ".\\obj\\" + fName << "." << endl;
+    cout << "# File : " << "./obj/" + fName << "." << endl;
     cout << "# Number of pages : " << *nbPages << "." << endl << endl;
 }
 
@@ -35,7 +35,7 @@ void createAdjacencyMatrix(SparseMatrix *adjMatrix, float dumpingFactor, int nbP
 
     if (printMat)
     {
-        ofstream adjacencyMatFile(".\\obj\\[GEN]adjacencyMat.txt");
+        ofstream adjacencyMatFile(".//obj//[GEN]adjacencyMat.txt");
         if (!adjacencyMatFile) throw 3;
         adjMatrix->print(adjacencyMatFile);
         cout << "Adjacency matrix file : created.\n";
@@ -74,8 +74,8 @@ void createWeightVector(vector <float> *weight, vector <float> *tempW, SparseMat
 
 void createFiles(vector <float> weight, vector <float> tempW, int nbPages)
 {
-    ofstream weightFile(".\\obj\\[GEN]weight.txt");
-    ofstream pagerankFile(".\\obj\\[GEN]pagerank.txt");
+    ofstream weightFile(".//obj//[GEN]weight.txt");
+    ofstream pagerankFile(".//obj//[GEN]pagerank.txt");
     if (!pagerankFile || !weightFile) throw 3;
     for (int i = 0 ; i < nbPages ; i++)
     {
@@ -104,7 +104,7 @@ int main(int argc, char* argv[])
                 printMat = true;
         }
 
-        string fName(argv[argc - 1]); ifstream file(".\\obj\\" + fName); int nbPages = -1;
+        string fName(argv[argc - 1]); ifstream file(".//obj//" + fName); int nbPages = -1;
         cmdLineRobustness(nbIterations, dumpingFactor, file, &nbPages, fName);
 
         SparseMatrix adjMatrix = SparseMatrix(nbPages, dumpingFactor);
