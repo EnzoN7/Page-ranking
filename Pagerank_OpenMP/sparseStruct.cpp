@@ -55,29 +55,31 @@ vector <float> SparseMatrix::operator*(vector <float> rowMat)
     vector <float> result(this->nbRows);
     float inc;
     int i, j;
-    for (i = 0 ; i < this->nbRows ; i++)
+    #pragma omp parallel private(j,inc)
     {
-        inc = rowMat[i] * this->dumpingFactor;
-        if (this->matrix[i].getColumns().size() == 0)
-        {
-            inc /= this->nbRows;
-            #pragma omp parallel for
-            for (j = 0 ; j < this->nbRows ; j++)
+        #pragma omp for
+            for (i = 0 ; i < this->nbRows ; i++)
             {
-                #pragma omp atomic
-                result[j] += inc;
+                inc = rowMat[i] * this->dumpingFactor;
+                if (this->matrix[i].getColumns().size() == 0)
+                {
+                    inc /= this->nbRows;
+                    for (j = 0 ; j < this->nbRows ; j++)
+                    {
+                        #pragma omp atomic
+                            result[j] += inc;
+                    }
+                }
+                else
+                {
+                    inc /= this->matrix[i].getColumns().size();
+                    for (j = 0 ; j < this->matrix[i].getColumns().size() ; j++)
+                    {
+                        #pragma omp atomic
+                            result[this->matrix[i].getColumns()[j]] += inc;
+                    }
+                }
             }
-        }
-        else
-        {
-            inc /= this->matrix[i].getColumns().size();
-            #pragma omp parallel for
-            for (j = 0 ; j < this->matrix[i].getColumns().size() ; j++)
-            {
-                #pragma omp atomic
-                result[this->matrix[i].getColumns()[j]] += inc;
-            }
-        }
     }
     return result;
 }

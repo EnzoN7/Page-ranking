@@ -3,7 +3,7 @@
 It is a small page ranking project in which you enter a network of web pages and in which a ranking of the pages by decreasing weight emerges.
 
 * *Standard version with brainlinks.net* : 18.544 seconds
-* *Parallel programming version with brainlinks.net* : 5.943 seconds
+* *Parallel programming version with brainlinks.net* : 7.943 seconds
 
 ## To use it
 **Compile:** <br/>
