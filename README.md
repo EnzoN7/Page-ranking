@@ -7,7 +7,6 @@ It is a small page ranking project in which you enter a network of web pages and
 
 ## To use it
 **Compile:** <br/>
-* `export OMP_NUM_THREADS=8` *can be changed according to your processor*
 * `g++ -o main -fopenmp ./*.cpp`
 
 
