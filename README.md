@@ -3,11 +3,11 @@
 It is a small page ranking project in which you enter a network of web pages and in which a ranking of the pages by decreasing weight emerges.
 
 * *Standard version with brainlinks.net* < 19 seconds
-* *Parallel programming version with brainlinks.net* < 1.5 seconds
+* *Parallel programming version with brainlinks.net* < 1.2 seconds
 
 ## To use it
 **Compile:** <br/>
-* `export OMP_NUM_THREADS=4` *can be changed according to your processor*
+* `export OMP_NUM_THREADS=8` *can be changed according to your processor*
 * `g++ -o main -fopenmp ./*.cpp`
 
 
